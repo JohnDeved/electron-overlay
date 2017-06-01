@@ -21,9 +21,7 @@ let players = []
 
 const electron = require('electron')
 electron.ipcRenderer.on('json', (event, msg) => {
-  msg.forEach(function(elem) {
-    players[elem.entity_id] = elem
-  })
+  players = msg
 })
 
 electron.ipcRenderer.on('window', (event, win) => {

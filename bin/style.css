@@ -6,3 +6,7 @@ html {
   width: 100vw;
   overflow: hidden;
 }
+
+canvas {
+  border: 1px dashed greenyellow;
+}
