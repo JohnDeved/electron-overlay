@@ -25,7 +25,6 @@ electron.ipcRenderer.on('json', (event, msg) => {
 })
 
 electron.ipcRenderer.on('window', (event, win) => {
-  console.log(win)
   resizeCanvas(win.width, win.height)
 })
 
