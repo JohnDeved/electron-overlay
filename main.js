@@ -72,10 +72,6 @@ server.on('message', (msg, rinfo) => {
   if (msg.units) {
     win.webContents.send('json', msg.units)
   }
-  if (msg.time) {
-    console.log(new Date() - msg.time)
-    win.webContents.send('time', msg.time)
-  }
 })
 
 server.bind(8888)

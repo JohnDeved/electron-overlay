@@ -29,10 +29,6 @@ electron.ipcRenderer.on('window', (event, win) => {
   resizeCanvas(win.width, win.height)
 })
 
-electron.ipcRenderer.on('time', (event, time) => {
-  // console.log(new Date() - time)
-})
-
 function setup () {
   frameRate(30)
   createCanvas(windowWidth, windowHeight)
@@ -42,7 +38,6 @@ function setup () {
 }
 
 function draw () {
-  let time = new Date()
   clear()
 
   players.forEach(function(elem) {
@@ -52,5 +47,4 @@ function draw () {
     strokeWeight(2)
     text(elem.name, elem.head.x, elem.head.y-10)
   })
-  console.log(new Date() - time)
 }
