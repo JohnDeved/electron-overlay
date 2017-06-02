@@ -4,12 +4,27 @@
   <head>
     <meta charset="UTF-8">
     <title>Arma 3 Overlay</title>
+
+    <!--Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+
+    <!-- Propeller css -->
+    <link href="css/propeller.css" rel="stylesheet">
+
+    <!-- Main css -->
     <link rel="stylesheet" href="css/style.css">
   </head>
 
   <body>
+    <button type="button" data-positionX="right" data-positionY="top" data-effect="fadeInUp" data-message="-" data-duration="3000" class="hidden btn pmd-ripple-effect btn-default pmd-btn-raised pmd-alert-toggle"> Top Right</button>  
   </body>
-
+  
+  <script>window.$ = window.jQuery = require('./js/jquery.js');</script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/propeller.js"></script>
   <script src="js/p5.js"></script>
   <!--<script src="bin/p5.play.js"></script>-->
   <script src="js/script.js"></script>

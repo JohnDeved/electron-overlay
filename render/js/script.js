@@ -28,11 +28,15 @@ electron.ipcRenderer.on('window', (event, win) => {
   resizeCanvas(win.width, win.height)
 })
 
+electron.ipcRenderer.on('hint', (event, msg) => {
+  hint(msg)
+})
+
 function setup () {
   frameRate(150)
   createCanvas(windowWidth, windowHeight)
   textAlign(CENTER)
-  fill('red')
+  fill('yellowgreen')
   stroke('black')
 }
 
@@ -45,5 +49,9 @@ function draw () {
     strokeWeight(2)
     text(elem.name, elem.head.x, elem.head.y-10)
   })
-  ellipse(mouseX, mouseY, 5, 5)
+}
+
+function hint (msg = 'hello') {
+  $('button.hidden').attr('data-message', msg)
+  $('button.hidden').click()
 }

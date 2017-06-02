@@ -8,6 +8,7 @@ const gkm = require('gkm');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
+let menu = null
 
 function createWindow () {
   // Create the browser window.
@@ -16,6 +17,7 @@ function createWindow () {
     width: 800, 
     height: 600, 
     frame: false,
+    enableLargerThanScreen: true,
     icon: 'arma3.ico'
   })
 
@@ -69,19 +71,25 @@ app.on('activate', () => {
   }
 })
 
+let winPos = {x:0, y:0}
 server.on('message', (msg, rinfo) => {
   msg = JSON.parse(msg.toString())
   if (msg.window) {
     win.setBounds(msg.window)
+    if (menu) {      
+      menu.setPosition(msg.window.x+25, msg.window.y+25)
+    }
     win.webContents.send('window', msg.window)
+    winPos.x = msg.window.x
+    winPos.y = msg.window.y
   }
   if (msg.units) {
     win.webContents.send('json', msg.units)
   }
 })
 
-ipcMain.on('client-message', (event, arg) => {
-  console.log(arg)
+ipcMain.on('hint', (event, msg) => {
+  win.webContents.send('hint', msg)
 })
 
 // server.send(message, 8889, '127.0.0.1', err => consoel.log(err))
@@ -90,25 +98,41 @@ server.bind(8888)
 
 // Listen to all key events (pressed, released, typed) 
 gkm.events.on('key.released', function(data) {
-    if (data[0] == "Insert") {
+    if (data[0] == "Insert") { 
       console.log('Einf eventhandler')
+      if (!menu) {
+        menu = new BrowserWindow({ 
+          parent: win,
+          frame: false,
+          transparent: true,
+          width: 250,  
+          height: 400,  
+          fullscreenable: false,  
+          maximizable: false,  
+          minimizable: false,  
+          resizable: false,  
+          autoHideMenuBar: true,  
+          icon: 'arma3.ico' 
+        }) 
 
-      menu = new BrowserWindow({
-        width: 250, 
-        height: 400, 
-        fullscreenable: false, 
-        maximizable: false, 
-        minimizable: false, 
-        resizable: false, 
-        autoHideMenuBar: true, 
-        icon: 'arma3.ico'
-      })
-      menu.loadURL(url.format({
-        pathname: path.join(__dirname, 'render/menu.html'),
-        protocol: 'file:',
-        slashes: true
-      }))
-      menu.setAlwaysOnTop(true)
+        menu.loadURL(url.format({ 
+          pathname: path.join(__dirname, 'render/menu.html'), 
+          protocol: 'file:', 
+          slashes: true 
+        })) 
+        menu.setAlwaysOnTop(true)
+        menu.setPosition(winPos.x+25,winPos.y+25)
+        // menu.focus()
 
+        menu.webContents.openDevTools()
+
+        menu.on('closed', () => {
+          menu = null
+        })
+      } else if (menu.isVisible()) {
+        menu.hide()
+      } else {
+        menu.show()
+      }
     }
 })
