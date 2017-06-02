@@ -98,15 +98,9 @@ ipcMain.on('hint', (event, msg) => {
 })
 
 ipcMain.on('toggle', (event, msg) => {
-  var message = JSON.stringify(msg);
-
-  if(message.length < 1022) {
-    for(var i = 0; i < 1022 - message.length; i++) {
-      message += " "
-    }
-  }
-
-  server.send(message, 8889, '127.0.0.1', err => console.log(err))
+  const message = Buffer(2048)
+  message.write(JSON.stringify(msg))
+  server.send(message, 0, message.length, 8889, '127.0.0.1', err => console.log(err))
 })
 
 
