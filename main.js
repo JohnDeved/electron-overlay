@@ -91,6 +91,9 @@ server.on('message', (msg, rinfo) => {
   if (msg.units) {
     win.webContents.send('json', msg.units)
   }
+  console.log(msg)
+  if (msg.command) {
+  }
 })
 
 ipcMain.on('hint', (event, msg) => {
@@ -100,7 +103,7 @@ ipcMain.on('hint', (event, msg) => {
 ipcMain.on('toggle', (event, msg) => {
   const message = Buffer(2048)
   message.write(JSON.stringify(msg))
-  server.send(message, 0, message.length, 8889, '127.0.0.1', err => console.log(err))
+  server.send(message, 0, message.length, 8889, '127.0.0.1')
 })
 
 
