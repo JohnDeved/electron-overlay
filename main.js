@@ -3,10 +3,19 @@ const path = require('path')
 const url = require('url')
 const dgram = require('dgram')
 const server = dgram.createSocket('udp4')
+const gkm = require('gkm');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
+
+ 
+// Listen to all key events (pressed, released, typed) 
+gkm.events.on('key.released', function(data) {
+    if (data[0] == "F1") {
+      console.log('F1 eventhandler')
+    }
+})
 
 function createWindow () {
   // Create the browser window.
@@ -38,7 +47,6 @@ function createWindow () {
     // when you should delete the corresponding element.
     win = null
   })
-
 }
 
 // This method will be called when Electron has finished
@@ -73,6 +81,12 @@ server.on('message', (msg, rinfo) => {
     win.webContents.send('json', msg.units)
   }
 })
+
+ipcMain.on('client-message', (event, arg) => {
+  console.log(arg)
+})
+
+// server.send(message, 8889, '127.0.0.1', err => consoel.log(err))
 
 server.bind(8888)
 

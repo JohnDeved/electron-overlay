@@ -28,16 +28,12 @@ electron.ipcRenderer.on('window', (event, win) => {
   resizeCanvas(win.width, win.height)
 })
 
-// var mouse
-
 function setup () {
   frameRate(150)
   createCanvas(windowWidth, windowHeight)
   textAlign(CENTER)
   fill('red')
   stroke('black')
-  // mouse = createSprite(400, 200, 10, 10)
-  // mouse.shapeColor = 'white'
 }
 
 function draw () {
