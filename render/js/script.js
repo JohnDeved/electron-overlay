@@ -43,14 +43,30 @@ function setup () {
   frameRate(150)
   createCanvas(windowWidth, windowHeight)
   textAlign(CENTER)
-  fill('yellowgreen')
   stroke('black')
 }
 
 function draw () {
   clear()
 
-  players.forEach(function(elem) {    
+  players.forEach(function(elem) {
+    switch (elem.side) {
+      case 0:
+        fill('#810101')
+        break;
+      case 1:
+        fill('#014d99')
+        break;
+      case 2:
+        fill('#018101')
+        break;
+      case 3:
+        fill('#670181')
+        break;
+      default:
+        fill('#b29901')
+        break;
+    } 
     strokeWeight(1)
     ellipse(elem.head.x, elem.head.y, 5)
     strokeWeight(2)
