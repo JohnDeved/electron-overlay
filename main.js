@@ -107,7 +107,7 @@ server.bind(8888)
 
 // Listen to all key events (pressed, released, typed) 
 gkm.events.on('key.released', function(data) {
-    if (data[0] == "Insert") { 
+    if (data[0] == "Insert" || data[0] == "Einfg") { 
       if (!menu) {
         menu = new BrowserWindow({ 
           parent: win,
