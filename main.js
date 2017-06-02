@@ -40,6 +40,11 @@ function createWindow () {
   // set fullscreen
   win.maximize(true)
 
+  // request arma screensize
+  const message = Buffer(2048)
+  message.write(JSON.stringify({command: 'window', value: 'request'}))
+  server.send(message, 0, message.length, 8889, '127.0.0.1')
+
   // Emitted when the window is closed.
   win.on('closed', () => {
     // Dereference the window object, usually you would store windows
