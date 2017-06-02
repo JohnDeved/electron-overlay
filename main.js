@@ -89,7 +89,7 @@ server.on('message', (msg, rinfo) => {
     winPos.y = msg.window.y
   }
   if (msg.units) {
-    win.webContents.send('json', msg.units)
+    win.webContents.send('units', JSON.stringify(msg.units))
   }
   if (msg.command) {
     win.webContents.send('command', msg)

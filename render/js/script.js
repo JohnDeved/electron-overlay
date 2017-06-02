@@ -20,8 +20,9 @@ let players = []
 // ]
 
 const electron = require('electron')
-electron.ipcRenderer.on('json', (event, msg) => {
-  players = msg
+
+electron.ipcRenderer.on('units', (event, msg) => {
+  players = JSON.parse(msg)
 })
 
 electron.ipcRenderer.on('window', (event, win) => {
