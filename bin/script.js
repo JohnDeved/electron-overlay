@@ -28,22 +28,26 @@ electron.ipcRenderer.on('window', (event, win) => {
   resizeCanvas(win.width, win.height)
 })
 
+// var mouse
+
 function setup () {
-  frameRate(30)
+  frameRate(500)
   createCanvas(windowWidth, windowHeight)
   textAlign(CENTER)
-  fill('white')
+  fill('red')
   stroke('black')
+  // mouse = createSprite(400, 200, 10, 10)
+  // mouse.shapeColor = 'white'
 }
 
 function draw () {
   clear()
 
-  players.forEach(function(elem) {
-    
+  players.forEach(function(elem) {    
     strokeWeight(1)
     ellipse(elem.head.x, elem.head.y, 5)
     strokeWeight(2)
     text(elem.name, elem.head.x, elem.head.y-10)
   })
+  ellipse(mouseX, mouseY, 5, 5)
 }
