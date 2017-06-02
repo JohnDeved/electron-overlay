@@ -32,6 +32,12 @@ electron.ipcRenderer.on('hint', (event, msg) => {
   hint(msg)
 })
 
+electron.ipcRenderer.on('command', (event, msg) => {
+  if (msg.command === 'ESP' && !msg.value) {
+    players = []
+  }
+})
+
 function setup () {
   frameRate(150)
   createCanvas(windowWidth, windowHeight)

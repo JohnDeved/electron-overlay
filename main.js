@@ -91,8 +91,8 @@ server.on('message', (msg, rinfo) => {
   if (msg.units) {
     win.webContents.send('json', msg.units)
   }
-  console.log(msg)
   if (msg.command) {
+    win.webContents.send('command', msg)
   }
 })
 
