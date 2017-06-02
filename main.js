@@ -96,14 +96,18 @@ ipcMain.on('hint', (event, msg) => {
   win.webContents.send('hint', msg)
 })
 
-// server.send(message, 8889, '127.0.0.1', err => consoel.log(err))
+ipcMain.on('toggle', (event, msg) => {
+  const message = Buffer(2048)
+  message.write(JSON.stringify(msg))
+  server.send(message, 8889, '127.0.0.1', err => consoel.log(err))
+})
+
 
 server.bind(8888)
 
 // Listen to all key events (pressed, released, typed) 
 gkm.events.on('key.released', function(data) {
     if (data[0] == "Insert") { 
-      console.log('Einf eventhandler')
       if (!menu) {
         menu = new BrowserWindow({ 
           parent: win,
