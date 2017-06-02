@@ -51,7 +51,8 @@ function draw () {
   })
 }
 
-function hint (msg = 'hello') {
-  $('button.hidden').attr('data-message', msg)
+function hint (msg = {text: 'hello', type: ''}) {
+  $('button.hidden').attr('data-message', msg.text)
+  $('button.hidden').attr('data-type', msg.type)
   $('button.hidden').click()
 }
