@@ -99,7 +99,7 @@ ipcMain.on('hint', (event, msg) => {
 ipcMain.on('toggle', (event, msg) => {
   const message = Buffer(2048)
   message.write(JSON.stringify(msg))
-  server.send(message, 8889, '127.0.0.1', err => consoel.log(err))
+  server.send(message, 8889, '127.0.0.1', err => console.log(err))
 })
 
 
