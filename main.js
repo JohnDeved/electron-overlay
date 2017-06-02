@@ -9,21 +9,19 @@ const gkm = require('gkm');
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
- 
-// Listen to all key events (pressed, released, typed) 
-gkm.events.on('key.released', function(data) {
-    if (data[0] == "F1") {
-      console.log('F1 eventhandler')
-    }
-})
-
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({transparent: true, width: 800, height: 600, frame: false})
+  win = new BrowserWindow({
+    transparent: true, 
+    width: 800, 
+    height: 600, 
+    frame: false,
+    icon: 'arma3.ico'
+  })
 
   // and load the index.html of the app.
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    pathname: path.join(__dirname, 'render/index.html'),
     protocol: 'file:',
     slashes: true
   }))
@@ -90,5 +88,27 @@ ipcMain.on('client-message', (event, arg) => {
 
 server.bind(8888)
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+// Listen to all key events (pressed, released, typed) 
+gkm.events.on('key.released', function(data) {
+    if (data[0] == "Insert") {
+      console.log('Einf eventhandler')
+
+      menu = new BrowserWindow({
+        width: 250, 
+        height: 400, 
+        fullscreenable: false, 
+        maximizable: false, 
+        minimizable: false, 
+        resizable: false, 
+        autoHideMenuBar: true, 
+        icon: 'arma3.ico'
+      })
+      menu.loadURL(url.format({
+        pathname: path.join(__dirname, 'render/menu.html'),
+        protocol: 'file:',
+        slashes: true
+      }))
+      menu.setAlwaysOnTop(true)
+
+    }
+})
