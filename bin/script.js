@@ -31,7 +31,7 @@ electron.ipcRenderer.on('window', (event, win) => {
 // var mouse
 
 function setup () {
-  frameRate(500)
+  frameRate(150)
   createCanvas(windowWidth, windowHeight)
   textAlign(CENTER)
   fill('red')
