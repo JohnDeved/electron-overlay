@@ -75,6 +75,10 @@ let winPos = {x:0, y:0}
 server.on('message', (msg, rinfo) => {
   msg = JSON.parse(msg.toString())
   if (msg.window) {
+    msg.window.x = msg.window.x+8
+    msg.window.y = msg.window.y+11
+    msg.window.width = msg.window.width-16
+    msg.window.height = msg.window.height-39
     win.setBounds(msg.window)
     if (menu) {      
       menu.setPosition(msg.window.x+25, msg.window.y+25)
