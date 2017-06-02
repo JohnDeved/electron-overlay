@@ -41,9 +41,11 @@ function createWindow () {
   win.maximize(true)
 
   // request arma screensize
-  const message = Buffer(2048)
-  message.write(JSON.stringify({command: 'window', value: 'request'}))
-  server.send(message, 0, message.length, 8889, '127.0.0.1')
+  setTimeout(function () {
+    const message = Buffer(2048)
+    message.write(JSON.stringify({command: 'window', value: 'request'}))
+    server.send(message, 0, message.length, 8889, '127.0.0.1')
+  }, 3000);
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -99,6 +101,7 @@ server.on('message', (msg, rinfo) => {
   if (msg.command) {
     win.webContents.send('command', msg)
   }
+  console.log(msg)
 })
 
 ipcMain.on('hint', (event, msg) => {
