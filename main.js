@@ -101,7 +101,7 @@ server.on('message', (msg, rinfo) => {
   if (msg.command) {
     win.webContents.send('command', msg)
   }
-  console.log(msg)
+  // console.log(msg)
 })
 
 ipcMain.on('hint', (event, msg) => {
