@@ -72,6 +72,7 @@ app.on('activate', () => {
 })
 
 let winPos = {x:0, y:0}
+server.bind(8888)
 server.on('message', (msg, rinfo) => {
   msg = JSON.parse(msg.toString())
   if (msg.window) {
@@ -97,13 +98,18 @@ ipcMain.on('hint', (event, msg) => {
 })
 
 ipcMain.on('toggle', (event, msg) => {
-  const message = Buffer(2048)
-  message.write(JSON.stringify(msg))
+  var message = JSON.stringify(msg);
+
+  if(message.length < 1022) {
+    for(var i = 0; i < 1022 - message.length; i++) {
+      message += " "
+    }
+  }
+
   server.send(message, 8889, '127.0.0.1', err => console.log(err))
 })
 
 
-server.bind(8888)
 
 // Listen to all key events (pressed, released, typed) 
 gkm.events.on('key.released', function(data) {
