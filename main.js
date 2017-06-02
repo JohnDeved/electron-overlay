@@ -45,7 +45,7 @@ function createWindow () {
     const message = Buffer(2048)
     message.write(JSON.stringify({command: 'window', value: 'request'}))
     server.send(message, 0, message.length, 8889, '127.0.0.1')
-  }, 3000);
+  }, 1000);
 
   // Emitted when the window is closed.
   win.on('closed', () => {
