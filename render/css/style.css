@@ -17,3 +17,11 @@ canvas {
   position: absolute;
   opacity: 0;
 }
+
+.success {
+  background-color: #8bc34a !important;
+}
+
+.error {
+  background-color: black !important;
+}
