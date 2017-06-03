@@ -109,9 +109,13 @@ ipcMain.on('hint', (event, msg) => {
 })
 
 ipcMain.on('toggle', (event, msg) => {
-  const message = Buffer(2048)
-  message.write(JSON.stringify(msg))
-  server.send(message, 0, message.length, 8889, '127.0.0.1')
+  if (msg.command === 'ESP') {
+    const message = Buffer(2048)
+    message.write(JSON.stringify(msg))
+    server.send(message, 0, message.length, 8889, '127.0.0.1')
+  } else {
+    win.webContents.send('command', msg)
+  }
 })
 
 

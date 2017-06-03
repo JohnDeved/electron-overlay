@@ -19,6 +19,7 @@ let players = []
 //         }
 //     }
 // ]
+let showHp, showName, showDistance
 
 const electron = require('electron')
 
@@ -35,8 +36,17 @@ electron.ipcRenderer.on('hint', (event, msg) => {
 })
 
 electron.ipcRenderer.on('command', (event, msg) => {
-  if (msg.command === 'ESP' && !msg.value) {
-    players = []
+  if (msg.command === 'ESP') {
+    return msg.value ? players : players = []
+  }
+  if (msg.command === 'HP') {
+    return msg.value ? showHp = true : showHp = false
+  }
+  if (msg.command === 'NAME') {
+    return msg.value ? showName = true : showName = false
+  }
+  if (msg.command === 'DISTANCE') {
+    return msg.value ? showDistance = true : showDistance = false
   }
 })
 
@@ -53,8 +63,10 @@ function draw () {
 
   players.forEach(function(elem) {
     strokeWeight(1)
-    fill('rgba(0,0,0,0.3)')
-    rect(elem.head.x, elem.head.y-15, 60, 5)
+    if (showHp) {
+      fill('rgba(0,0,0,0.3)')
+      rect(elem.head.x, elem.head.y-15, 60, 5)
+    }
     switch (elem.side) {
       case 0:
         fill('#810101')
@@ -73,9 +85,16 @@ function draw () {
         break;
     }
     ellipse(elem.head.x, elem.head.y, 5)
-    text(elem.name, elem.head.x, elem.head.y-20)
-    strokeWeight(0)
-    rect(elem.head.x-(30*elem.hp), elem.head.y-15, 60-((30*elem.hp)*2), 5)
+    if (showName) {
+      text(elem.name, elem.head.x, elem.head.y-20)
+    }
+    if (showDistance) {
+      text((Math.floor(elem.distance)-3)+'m', elem.head.x, elem.head.y-30)
+    }
+    if (showHp) {
+      strokeWeight(0)
+      rect(elem.head.x-(30*elem.hp), elem.head.y-15, 60-((30*elem.hp)*2), 5)
+    }
   })
 }
 
