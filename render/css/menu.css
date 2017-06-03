@@ -9,9 +9,8 @@ body {
 }
 
 .container {
-  height: 100%;
-  width:  200px;
-  height: 100px;
+  /*width:  200px;*/
+  /*height: 100px;*/
   background: white;
   border-radius: 3px;
   border: solid #8bc34a 1px;
