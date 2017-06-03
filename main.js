@@ -83,10 +83,10 @@ server.bind(8888)
 server.on('message', (msg, rinfo) => {
   msg = JSON.parse(msg.toString())
   if (msg.window) {
-    msg.window.x = msg.window.x+8
-    msg.window.y = msg.window.y+11
-    msg.window.width = msg.window.width-16
-    msg.window.height = msg.window.height-39
+    msg.window.x = msg.window.x+8+10
+    msg.window.y = msg.window.y+11+30
+    msg.window.width = msg.window.width-16-20
+    msg.window.height = msg.window.height-39-20
     win.setBounds(msg.window)
     if (menu) {      
       menu.setPosition(msg.window.x+25, msg.window.y+25)
