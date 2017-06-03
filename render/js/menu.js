@@ -8,6 +8,6 @@ $(".mdl-checkbox").on("change", function() {
   } else {
     electron.ipcRenderer.send('hint', {text: $(this).attr('id') + ' disabled', type: 'error'})
     electron.ipcRenderer.send('toggle', {command: $(this).attr('id'), value: false})
-    return $(this).children().first().removeAttr("checked");
+    $(this).children().first().removeAttr("checked");
   }
 })
