@@ -4,6 +4,7 @@ let players = []
 //         name: "Ben Hanks",
 //         entity_id: 1337,
 //         hp: 100,
+//         distance: 100,
 //         head: {
 //             x: 250,
 //             y: 400
@@ -43,6 +44,7 @@ function setup () {
   frameRate(150)
   createCanvas(windowWidth, windowHeight)
   textAlign(CENTER)
+  rectMode(CENTER)
   stroke('black')
 }
 
@@ -50,6 +52,9 @@ function draw () {
   clear()
 
   players.forEach(function(elem) {
+    strokeWeight(1)
+    fill('rgba(0,0,0,0.3)')
+    rect(elem.head.x, elem.head.y-15, 60, 5)
     switch (elem.side) {
       case 0:
         fill('#810101')
@@ -66,11 +71,11 @@ function draw () {
       default:
         fill('#b29901')
         break;
-    } 
-    strokeWeight(1)
+    }
     ellipse(elem.head.x, elem.head.y, 5)
-    strokeWeight(2)
-    text(elem.name, elem.head.x, elem.head.y-10)
+    text(elem.name, elem.head.x, elem.head.y-20)
+    strokeWeight(0)
+    rect(elem.head.x-(30*elem.hp), elem.head.y-15, 60-((30*elem.hp)*2), 5)
   })
 }
 
