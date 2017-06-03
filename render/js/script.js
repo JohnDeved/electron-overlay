@@ -40,13 +40,13 @@ electron.ipcRenderer.on('command', (event, msg) => {
     return msg.value ? players : players = []
   }
   if (msg.command === 'HP') {
-    return msg.value ? showHp = true : showHp = false
+    return showHp = msg.value
   }
   if (msg.command === 'NAME') {
-    return msg.value ? showName = true : showName = false
+    return showName = msg.value
   }
   if (msg.command === 'DISTANCE') {
-    return msg.value ? showDistance = true : showDistance = false
+    return showDistance = msg.value
   }
 })
 
