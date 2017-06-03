@@ -89,7 +89,7 @@ function draw () {
       text(elem.name, elem.head.x, elem.head.y-20)
     }
     if (showDistance) {
-      text((Math.floor(elem.distance)-3)+'m', elem.head.x, elem.head.y-30)
+      text(Math.floor(elem.distance)+'m', elem.head.x, elem.head.y-30)
     }
     if (showHp) {
       strokeWeight(0)
