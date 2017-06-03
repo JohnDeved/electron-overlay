@@ -78,7 +78,7 @@ app.on('activate', () => {
   }
 })
 
-let winPos = {x:0, y:0}
+let winPos = {x:0, y:0, height:0, width:0}
 server.bind(8888)
 server.on('message', (msg, rinfo) => {
   msg = JSON.parse(msg.toString())
@@ -89,11 +89,10 @@ server.on('message', (msg, rinfo) => {
     msg.window.height = msg.window.height-39-20
     win.setBounds(msg.window)
     if (menu) {      
-      menu.setPosition(msg.window.x+25, msg.window.y+25)
+      menu.setBounds(msg.window)
     }
     win.webContents.send('window', msg.window)
-    winPos.x = msg.window.x
-    winPos.y = msg.window.y
+    winPos = msg.window
   }
   if (msg.units) {
     win.webContents.send('units', JSON.stringify(msg.units))
@@ -128,7 +127,7 @@ gkm.events.on('key.released', function(data) {
           parent: win,
           frame: false,
           transparent: true,
-          width: 250,  
+          width: 400,  
           height: 400,  
           fullscreenable: false,  
           maximizable: false,  
@@ -144,7 +143,7 @@ gkm.events.on('key.released', function(data) {
           slashes: true 
         })) 
         menu.setAlwaysOnTop(true)
-        menu.setPosition(winPos.x+25,winPos.y+25)
+        menu.setBounds(winPos)
         // menu.focus()
 
         menu.webContents.openDevTools()

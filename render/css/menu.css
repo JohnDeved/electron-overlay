@@ -1,19 +1,44 @@
 body {
   top:0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
   overflow: hidden;
   -webkit-user-select: none;
   user-select: none;
+  background: rgba(0,0,0,0.2);
 }
 
 .container {
-  /*width:  200px;*/
+  margin: 0;
+  width: 322px;
   /*height: 100px;*/
-  background: white;
+  /*background: white;
   border-radius: 3px;
-  border: solid #8bc34a 1px;
+  border: solid #8bc34a 1px;*/
   /*box-shadow: -2px -2px 10px;*/
   padding: 15px;
+  overflow: auto;
+}
+
+ul {
+  line-height: 50px;
+}
+
+.mdl-checkbox__box-outline {
+    border: 2px solid rgba(255, 255, 255, 0.8);;
+}
+
+.pmd-card {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.pmd-card-body {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.pmd-tabs-bg {
+  background-color: rgba(139, 195, 74, 0.1)
+}
+
+.pmd-tabs .pmd-tab-active-bar {
+  background: #8bc34a;
 }

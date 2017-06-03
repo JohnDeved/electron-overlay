@@ -1,3 +1,7 @@
+$(document).ready( function() {
+  $('.pmd-tabs').pmdTab();
+});
+
 const electron = require('electron')
 
 $(".mdl-checkbox").on("change", function() {
